@@ -21,6 +21,14 @@ function isAlive(inputArray, rowNumber, colNumber){
       }
     }
   }
-  return array[rowNumber][colNumber] && !(count < 2);
+  if(array[rowNumber][colNumber]){
+    if (count < 2){
+      return false
+    } else {
+      return true
+    }
+  } else {
+    return false
+  }
 }
 module.exports = calculateNextStep;

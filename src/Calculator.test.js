@@ -38,10 +38,32 @@ test('center cell stays alive if it has 2 neighbours', () => {
 
 test('corner cell stays alive if it has 2 neighbours', () => {
   let array = [
-    'X . .'.split(' '),
-    'X X .'.split(' '),
-    '. . .'.split(' ')
-  ];
+    'X . .',
+    'X X .',
+    '. . .'
+  ].map(row => row.split(' '));
+  array = convertToBools(array);
+  let nextStep = calculateNextStep(array);
+  expect(nextStep[0][0]).toBe(true)
+});
+
+test('cell stays alive if it has 3 neighbours', () => {
+  let array = [
+    '. X .',
+    'X X X',
+    '. . .'
+  ].map(row => row.split(' '));
+  array = convertToBools(array);
+  let nextStep = calculateNextStep(array);
+  expect(nextStep[1][1]).toBe(true)
+});
+
+test('corner cell stays alive if it has 3 neighbours', () => {
+  let array = [
+    'X X .',
+    'X X .',
+    '. . .'
+  ].map(row => row.split(' '));
   array = convertToBools(array);
   let nextStep = calculateNextStep(array);
   expect(nextStep[0][0]).toBe(true)
