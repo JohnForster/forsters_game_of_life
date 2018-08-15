@@ -11,7 +11,7 @@ class App extends Component {
           <h1>Game of Life</h1>
           <h3>in React</h3>
         </header>
-        <Board  columns={5} rows={10} />
+        <Board  className='Board' columns={100} rows={50} />
       </div>
     );
   }
@@ -25,9 +25,9 @@ class Board extends React.Component {
     };
   }
   generateCells(rows, columns) {
-    let cells = new Array(columns);
-    for (let i = 0; i < columns; i++){
-      cells[i] = new Array(rows).fill(false)
+    let cells = new Array(rows);
+    for (let i = 0; i < rows; i++){
+      cells[i] = new Array(columns).fill(false)
     }
     return cells
   }
@@ -45,7 +45,7 @@ class Board extends React.Component {
     let board = [];
     for (let i = 0; i < cells.length; i++) {
       board.push(
-          <div className="board-row">
+          <div className="board-row" key={'row' + i.toString()}>
             {this.renderRow(cells, i)}
           </div>
       )
@@ -64,6 +64,7 @@ class Board extends React.Component {
   renderCell(row, column) {
     return (
         <Cell
+            key={'r' + row.toString() + 'c' + column.toString()}
             cellStatus={this.state.cells[row][column]}
             onClick={() => this.handleClick(row, column)}
         />
@@ -71,23 +72,12 @@ class Board extends React.Component {
   }
 
   handleClick(row, column) {
-    console.log(this.state.cells.slice())
     const cells = this.state.cells.slice();
-    console.log(cells);
     cells[row][column] = !cells[row][column];
-    console.log(cells);
     this.setState({
       cells: cells
     });
   }
-
-
-
-
-
-
-
-
 }
 
 function Cell(props) {
