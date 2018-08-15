@@ -21,10 +21,11 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        cells: this.generateCells(props.rows, props.columns)
+        cells: Board.generateCellArray(props.rows, props.columns)
     };
   }
-  generateCells(rows, columns) {
+
+  static generateCellArray(rows, columns) {
     let cells = new Array(rows);
     for (let i = 0; i < rows; i++){
       cells[i] = new Array(columns).fill(false)
