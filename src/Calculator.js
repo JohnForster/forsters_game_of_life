@@ -1,25 +1,26 @@
 function calculateNextStep(array) {
-  let input = array.slice();
-  let output = input.slice();
-  console.log(input);
+  let input = array.map(row => row.slice());
+  let output = input.map(row => row.slice());
   for (let i = 0; i < input.length; i++){
     for (let j = 0; j < input.length; j++){
       output[i][j] = isAlive(input, i, j)
     }
   }
-  console.log(output);
   return output
 }
 
-function isAlive(array, i, j){
+function isAlive(inputArray, rowNumber, colNumber){
+  let array = inputArray.map(row => row.slice())
   let count = 0;
-  for (let a = -1; a <= 1; a++){
-    if (i + a < 0 || i + a >= array.length) { break; }
-    for (let b = -1; b <= 1; b++) {
-       if (j + b < 0 || (a === 0 && b === 0) || j + b >= array[0].length) { break; }
-       if (array[i + a][j + b]){ count++ }
+  for (let upDown = -1; upDown <= 1; upDown++){
+    if (rowNumber + upDown < 0 || rowNumber + upDown >= array.length) { continue; }
+    for (let leftRight = -1; leftRight <= 1; leftRight++) {
+      if (colNumber + leftRight < 0 || (upDown === 0 && leftRight === 0) || colNumber + leftRight >= array[0].length) {continue;}
+      if (array[rowNumber + upDown][colNumber + leftRight]) {
+       count++
+      }
     }
   }
-  return !(count < 2);
+  return array[rowNumber][colNumber] && !(count < 2);
 }
 module.exports = calculateNextStep;
