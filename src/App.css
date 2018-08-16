@@ -29,14 +29,15 @@
 
 .cell {
   border: 1px solid #999;
-  float: left;
   line-height: 10px;
+  float: left;
   height: 10px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   width: 10px;
 }
+
 .cell:focus {
   outline: none;
 }
@@ -52,5 +53,5 @@
 }
 
 .active-cell {
-  background: #0da6b0;
+  background: #b01ca0;
 }

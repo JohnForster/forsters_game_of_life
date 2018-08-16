@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {calculateNextStep} from './Calculator';
 import './App.css';
 
+const COLUMNS = 100;
+const ROWS = 50;
+
 class App extends Component {
   render() {
     return (
@@ -12,7 +15,7 @@ class App extends Component {
           <h3>in React</h3>
         </header>
         <div className="board-container">
-          <Board  className='Board' columns={100} rows={50} />
+          <Board  className='Board' columns={COLUMNS} rows={ROWS} />
         </div>
       </div>
     );
