@@ -115,3 +115,23 @@ test('cell dies if it has no neighbours', () => {
   expect(nextStep[1][1]).toBe(false)
 });
 
+test('full 5x5 array', () => {
+  let array = [
+    'X . . . X',
+    '. X . X X',
+    'X . X X X',
+    '. . . . X',
+    'X X X . X'
+  ].map(row => row.split(' '));
+  array = convertToBools(array);
+  let finalArray = [
+      '. . . X X',
+      'X X . . .',
+      '. X X . .',
+      'X . . . X',
+      '. X . X .'
+  ].map(row => row.split(' '));
+  finalArray = convertToBools(finalArray);
+  let nextStep = calculateNextStep(array);
+  expect(nextStep).toEqual(finalArray);
+});

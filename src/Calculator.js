@@ -23,13 +23,18 @@ function isAlive(inputArray, rowIndex, columnIndex){
       }
     }
   }
-  let alive = array[rowIndex][columnIndex];
-  if( alive && count   < 2){ return false }
-  if( alive && count  <= 3){ return true  }
-  if( alive && count  >= 4){ return false }
-  if(!alive && count === 3){ return true  }
+  let isCurrentlyAlive = array[rowIndex][columnIndex];
+  return applyRules(isCurrentlyAlive, count)
+}
+
+function applyRules(cellStatus, count){
+  if( cellStatus && count   < 2){ return false }
+  if( cellStatus && count  <= 3){ return true  }
+  if( cellStatus && count  >= 4){ return false }
+  if(!cellStatus && count === 3){ return true  }
   else { return false }
 }
+
 
 module.exports = {
   calculateNextStep: function(array){
@@ -42,4 +47,4 @@ module.exports = {
     }
     return output
   }
-}
+};
