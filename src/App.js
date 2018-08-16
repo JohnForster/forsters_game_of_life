@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {calculateNextStep} from './Calculator';
 import './App.css';
 
 class App extends Component {
@@ -11,7 +11,9 @@ class App extends Component {
           <h1>Game of Life</h1>
           <h3>in React</h3>
         </header>
-        <Board  className='Board' columns={100} rows={50} />
+        <div className="board-container">
+          <Board  className='Board' columns={100} rows={50} />
+        </div>
       </div>
     );
   }
@@ -21,7 +23,10 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        cells: Board.generateCellArray(props.rows, props.columns)
+        rows: props.rows,
+        columns: props.columns,
+        cells: Board.generateCellArray(props.rows, props.columns),
+        isLooping: false
     };
   }
 
@@ -33,10 +38,44 @@ class Board extends React.Component {
     return cells
   }
 
+  nextStep() {
+    let currentStep = this.state.cells.map(row => row.slice());
+    let next = calculateNextStep(currentStep);
+    this.setState({cells: next})
+  }
+
+  nextLoopStep(){
+    if(this.state.isLooping){this.nextStep();}
+  }
+
+  componentDidMount() {
+      this.interval = setInterval(() => this.nextLoopStep(), 500);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  startStepLoop(){
+    this.setState({isLooping: true})
+  }
+
+  stopStepLoop(){
+    this.setState({isLooping: false})
+  }
+
+  reset(){
+    this.stopStepLoop();
+    this.setState({cells: Board.generateCellArray(this.state.rows, this.state.columns)})
+  }
+
   render(){
     return (
         <div>
-          {this.renderBoard()}
+          {this.renderBoard()}<br/>
+          <button onClick={() => this.nextStep()}>Next Step</button>
+          <button onClick={() => this.startStepLoop()}>Begin</button>
+          <button onClick={() => this.stopStepLoop()}>Stop</button>
+          <button onClick={() => this.reset()}>Reset</button>
         </div>
     )
   }
