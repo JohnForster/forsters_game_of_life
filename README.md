@@ -11,6 +11,7 @@ the next turn can be calculated by following a set of rules:
 4. A dead cell comes to life if it has exactly 3 neighbours (as if by reproduction)
 
 ## How to use this project
+Visit https://forsters-game-of-life.herokuapp.com/, or alternatively:
 1. Clone this repo.
 2. Navigate to the directory and run `npm install` (requires node to be installed)
 3. Run `npm start`
