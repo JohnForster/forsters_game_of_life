@@ -30,7 +30,7 @@
 .cell {
   border: 1px solid #999;
   line-height: 10px;
-  float: left;
+  display: inline-block;
   height: 10px;
   margin-right: -1px;
   margin-top: -1px;
@@ -41,11 +41,17 @@
 .cell:focus {
   outline: none;
 }
+.board-container {
+  padding: 10px;
+}
+
+.board-row {
+  line-height: 0;
+}
 
 .board-row:after {
   clear: both;
   content: "";
-  display: table;
 }
 
 .inactive-cell {
