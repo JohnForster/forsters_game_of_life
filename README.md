@@ -1,6 +1,6 @@
 # John ~~Conway~~ Forster's Game of Life
 An implementation of [Conway's game of life](https://en.wikipedia.org/wiki/Conway's_game_of_life) in Javascript
-and React, written in two days by John Forster as part of the Makers' Academy course.
+and React, by John Forster as part of the Makers' Academy course. This was my first solo project in React, and was written in two days.
 
 ## The rules
 The game consists of a grid of cells, which can be either alive or dead. After setting up the initial state,
